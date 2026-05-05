@@ -5,6 +5,7 @@
 
 import csv
 import json
+import math
 import os
 import sys
 from collections import defaultdict
@@ -19,7 +20,11 @@ CACHE_FILE = os.path.join(_HERE, "cache", "books.json")
 # ---------- loaders ----------
 
 def _coerce(row, has_rating):
-    row["My Rating"]  = int(row["My Rating"])   if has_rating and row.get("My Rating", "").strip() else None
+    if has_rating:
+        ftr = row.get("FTR", "").strip()
+        row["My Rating"] = float(ftr) if ftr else None
+    else:
+        row["My Rating"] = None
     row["Avg Rating"] = float(row["Avg Rating"]) if row.get("Avg Rating", "").strip() else None
     row["Pages"]      = int(row["Pages"])        if row.get("Pages", "").strip().isdigit() else None
     row["School?"]    = int(row.get("School?", 0))
@@ -86,10 +91,22 @@ def build_stats(read_books):
 
 # ---------- TF-IDF description similarity ----------
 
+# Promotional boilerplate that appears across descriptions regardless of content
+_PROMO_STOPS = {
+    "bestseller", "bestselling", "internationally", "international", "acclaimed",
+    "critically", "award", "winning", "prize", "landmark", "groundbreaking",
+    "stunning", "brilliant", "masterpiece", "masterful", "compelling", "gripping",
+    "unforgettable", "extraordinary", "remarkable", "timeless", "definitive",
+    "new", "york", "times", "author", "book", "novel", "read", "story", "tells",
+    "tells", "world", "life", "way", "just", "like", "make", "readers", "reader",
+    "written", "writing", "work", "great", "good", "books", "page", "pages",
+}
+
 def build_tfidf(read_books, cache):
     """
     Fit a TF-IDF model on descriptions of read books pulled from the cache.
     Returns a model dict, or None if sklearn is unavailable or no descriptions exist.
+    Skips books whose cached description is too short to be useful (<80 chars).
     """
     try:
         from sklearn.feature_extraction.text import TfidfVectorizer
@@ -99,26 +116,34 @@ def build_tfidf(read_books, cache):
     descs, books_with_desc = [], []
     for b in read_books:
         desc = cache.get(cache_key(b["Title"], b["Author"]), {}).get("description", "").strip()
-        if desc:
+        if len(desc) >= 80:
             descs.append(desc)
             books_with_desc.append(b)
 
     if not descs:
         return None
 
-    vec    = TfidfVectorizer(stop_words="english", min_df=1, ngram_range=(1, 2))
+    from sklearn.feature_extraction.text import ENGLISH_STOP_WORDS
+    stops = list(ENGLISH_STOP_WORDS.union(_PROMO_STOPS))
+
+    vec    = TfidfVectorizer(stop_words=stops, min_df=1, ngram_range=(1, 2))
     matrix = vec.fit_transform(descs)
     return {"vectorizer": vec, "matrix": matrix, "books": books_with_desc}
+
+def _book_genres(book):
+    return {book.get(f, "").strip() for f in ("Genre 1", "Genre 2", "Genre 3")} - {""}
 
 def desc_similarities(book, cache, tfidf_model, top_k=3):
     """
     Return top_k most similar read books by TF-IDF cosine similarity.
+    Prefers genre-matched candidates; falls back to all books if none share a genre.
     Returns list of (read_book, score) sorted descending, or [] if unavailable.
     """
     if tfidf_model is None:
         return []
     try:
         from sklearn.metrics.pairwise import cosine_similarity
+        import numpy as np
     except ImportError:
         return []
 
@@ -126,10 +151,29 @@ def desc_similarities(book, cache, tfidf_model, top_k=3):
     if not desc:
         return []
 
-    vec  = tfidf_model["vectorizer"].transform([desc])
-    sims = cosine_similarity(vec, tfidf_model["matrix"]).flatten()
+    query_vec = tfidf_model["vectorizer"].transform([desc])
+
+    # Try genre-filtered candidates first
+    book_genres = _book_genres(book)
+    all_books   = tfidf_model["books"]
+    all_matrix  = tfidf_model["matrix"]
+
+    if book_genres:
+        genre_idx = [i for i, b in enumerate(all_books) if _book_genres(b) & book_genres]
+    else:
+        genre_idx = []
+
+    # Use genre-filtered subset if it has at least top_k candidates, else fall back
+    if len(genre_idx) >= top_k:
+        candidates = [all_books[i] for i in genre_idx]
+        matrix     = all_matrix[genre_idx]
+    else:
+        candidates = all_books
+        matrix     = all_matrix
+
+    sims = cosine_similarity(query_vec, matrix).flatten()
     top  = sims.argsort()[::-1][:top_k]
-    return [(tfidf_model["books"][i], float(sims[i])) for i in top if sims[i] > 0]
+    return [(candidates[i], float(sims[i])) for i in top if sims[i] > 0]
 
 # ---------- feature builder ----------
 
@@ -143,10 +187,11 @@ FEATURE_NAMES = [
     "series_avg",       # user's avg for this series (falls back to global avg)
     "series_count",     # books in this series already read
     "series_number",    # position in series (0 = standalone)
-    "pages",            # page count
+    "log_pages",        # log(1 + page count) — dampens outlier effect
     "release_year",     # publication year
-    "desc_sim_rating",  # rating-weighted avg of top-3 most similar read books by description
-    "desc_sim_max",     # highest cosine similarity score to any single read book
+    "school",           # 1 if read for school (strong negative signal)
+    "desc_sim_avg",     # similarity-weighted avg rating of top-3 similar read books
+    "desc_sim_score",   # max TF-IDF cosine sim score (confidence in desc_sim_avg)
 ]
 
 def build_features(book, stats, cache, tfidf_model=None):
@@ -186,35 +231,39 @@ def build_features(book, stats, cache, tfidf_model=None):
     release_year = book.get("Release") or 0
     gr_avg = book.get("Avg Rating") or g
 
-    # Description similarity
+    # School flag
+    school = int(book.get("School?", 0))
+
+    # Description similarity — similarity-weighted avg rating of top-3 matches
     sims = desc_similarities(book, cache, tfidf_model, top_k=3)
     if sims:
-        total_sim     = sum(s for _, s in sims)
-        desc_sim_rating = sum(b["My Rating"] * s for b, s in sims) / total_sim
-        desc_sim_max    = sims[0][1]
+        total_weight = sum(s for _, s in sims)
+        desc_sim_avg   = sum(b["My Rating"] * s for b, s in sims) / total_weight if total_weight else g
+        desc_sim_score = max(s for _, s in sims)
     else:
-        desc_sim_rating = g
-        desc_sim_max    = 0.0
+        desc_sim_avg   = g
+        desc_sim_score = 0.0
 
     return {
-        "gr_avg":           gr_avg,
-        "genre1_avg":       genre1_avg,
-        "genre2_avg":       genre2_avg,
-        "author_avg":       author_avg,
-        "author_count":     author_count,
-        "series_avg":       series_avg,
-        "series_count":     series_count,
-        "series_number":    series_number,
-        "pages":            pages,
-        "release_year":     release_year,
-        "desc_sim_rating":  desc_sim_rating,
-        "desc_sim_max":     desc_sim_max,
+        "gr_avg":         gr_avg,
+        "genre1_avg":     genre1_avg,
+        "genre2_avg":     genre2_avg,
+        "author_avg":     author_avg,
+        "author_count":   author_count,
+        "series_avg":     series_avg,
+        "series_count":   series_count,
+        "series_number":  series_number,
+        "log_pages":      math.log1p(pages),
+        "release_year":   release_year,
+        "school":         school,
+        "desc_sim_avg":   desc_sim_avg,
+        "desc_sim_score": desc_sim_score,
     }
 
 def build_feature_matrix(books, stats, cache, tfidf_model=None):
     """Build feature dicts for a list of books. Returns (feat_dicts, ratings)."""
     feat_dicts = [build_features(b, stats, cache, tfidf_model) for b in books]
-    ratings    = [b.get("My Rating") for b in books]
+    ratings    = [b.get("FTR") for b in books] # "My Rating"
     return feat_dicts, ratings
 
 # ---------- CLI ----------

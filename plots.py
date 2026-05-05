@@ -11,16 +11,17 @@ import matplotlib.ticker as ticker
 import numpy as np
 
 # ---------- load data ----------
+myratingcolumn = "FTR" #"My Rating"
 
 with open(r"input_tables/Reading_data_table.csv", newline="", encoding="utf-8-sig") as f:
     books = [row for row in csv.DictReader(f) if row["Title"].strip()]
 
 for b in books:
-    b["My Rating"] = int(b["My Rating"])
+    b[myratingcolumn] = float(b[myratingcolumn])
     b["Avg Rating"] = float(b["Avg Rating"]) if b["Avg Rating"] else None
     b["Pages"] = int(b["Pages"]) if b["Pages"] else None
     b["School?"] = int(b["School?"])
-    b["diff"] = b["My Rating"] - b["Avg Rating"] if b["Avg Rating"] else None
+    b["diff"] = b[myratingcolumn] - b["Avg Rating"] if b["Avg Rating"] else None
 
 OUT = "analysis_outputs"
 
@@ -29,8 +30,7 @@ def avg(vals):
     return sum(vals) / len(vals) if vals else 0
 
 # consistent genre color map across all plots
-GENRES = ["Mystery", "Fantasy", "SciFi", "Nonfiction", "Science", "Economics", "History",
-          "Fiction", "Classic", "Play"]
+GENRES = ["Mystery", "Fantasy", "SciFi", "Nonfiction", "Fiction", "Classic", "Play"]
 COLORS = plt.cm.tab10.colors
 GENRE_COLOR = {g: COLORS[i] for i, g in enumerate(GENRES)}
 
@@ -42,7 +42,7 @@ def save(fig, name):
 
 # ---------- 1. Rating distribution ----------
 
-counts = [sum(1 for b in books if b["My Rating"] == r) for r in range(1, 6)]
+counts = [sum(1 for b in books if b[myratingcolumn] == r) for r in range(1, 6)]
 fig, ax = plt.subplots(figsize=(6, 4))
 bars = ax.bar(range(1, 6), counts, color="#4C72B0", edgecolor="white", linewidth=0.8)
 ax.bar_label(bars, padding=3, fontsize=10)
@@ -61,8 +61,8 @@ genres_data = defaultdict(list)
 for b in books:
     genres_data[b["Genre 1"]].append(b)
 
-genre_order = sorted(GENRES, key=lambda g: avg([b["My Rating"] for b in genres_data[g]]))
-my_avgs = [avg([b["My Rating"] for b in genres_data[g]]) for g in genre_order]
+genre_order = sorted(GENRES, key=lambda g: avg([b[myratingcolumn] for b in genres_data[g]]))
+my_avgs = [avg([b[myratingcolumn] for b in genres_data[g]]) for g in genre_order]
 gr_avgs = [avg([b["Avg Rating"] for b in genres_data[g]]) for g in genre_order]
 counts_g = [len(genres_data[g]) for g in genre_order]
 
@@ -76,7 +76,7 @@ ax.set_yticklabels([f"{g}  (n={c})" for g, c in zip(genre_order, counts_g)])
 ax.set_xlabel("Average Rating")
 ax.set_title("My Rating vs Goodreads Average by Genre")
 ax.set_xlim(1, 5.4)
-ax.axvline(x=avg([b["My Rating"] for b in books]), color="#4C72B0", linestyle="--", linewidth=0.8, alpha=0.6)
+ax.axvline(x=avg([b[myratingcolumn] for b in books]), color="#4C72B0", linestyle="--", linewidth=0.8, alpha=0.6)
 ax.axvline(x=avg([b["Avg Rating"] for b in books]), color="#DD8452", linestyle="--", linewidth=0.8, alpha=0.6)
 ax.legend()
 ax.spines[["top", "right"]].set_visible(False)
@@ -120,7 +120,7 @@ for genre in GENRES:
     if not grp:
         continue
     xs = [b["Avg Rating"] for b in grp]
-    ys = [b["My Rating"] for b in grp]
+    ys = [b[myratingcolumn] for b in grp]
     markers = ["^" if b["School?"] else "o" for b in grp]
     for x, y_val, m in zip(xs, ys, markers):
         ax.scatter(x, y_val, color=GENRE_COLOR[genre], marker=m, s=60, alpha=0.8, linewidths=0)
@@ -178,15 +178,15 @@ for b in books:
     if b["Author"].strip():
         author_books[b["Author"]].append(b)
 multi = {a: grp for a, grp in author_books.items() if len(grp) >= 2}
-author_order = sorted(multi, key=lambda a: avg([b["My Rating"] for b in multi[a]]))
+author_order = sorted(multi, key=lambda a: avg([b[myratingcolumn] for b in multi[a]]))
 
 fig, ax = plt.subplots(figsize=(8, max(4, len(author_order) * 0.55)))
 for i, author in enumerate(author_order):
     grp = multi[author]
     for b in grp:
         color = GENRE_COLOR.get(b["Genre 1"], "gray")
-        ax.scatter(b["My Rating"], i, color=color, s=80, zorder=3)
-    xs = [b["My Rating"] for b in grp]
+        ax.scatter(b[myratingcolumn], i, color=color, s=80, zorder=3)
+    xs = [b[myratingcolumn] for b in grp]
     ax.plot([min(xs), max(xs)], [i, i], color="gray", linewidth=1, zorder=2)
     ax.scatter(avg(xs), i, color="black", marker="|", s=200, zorder=4, linewidths=2)
 
@@ -214,7 +214,7 @@ for genre in GENRES:
     if not grp:
         continue
     xs = [b["Release"] for b in grp]
-    ax.scatter(xs, [b["My Rating"] for b in grp],
+    ax.scatter(xs, [b[myratingcolumn] for b in grp],
                color=GENRE_COLOR[genre], marker="o", s=55, alpha=0.85, linewidths=0)
     ax.scatter(xs, [b["Avg Rating"] for b in grp],
                color=GENRE_COLOR[genre], marker="^", s=55, alpha=0.5, linewidths=0)
@@ -248,7 +248,7 @@ for genre in GENRES:
     if not grp:
         continue
     xs = [b["Pages"] for b in grp]
-    ax.scatter(xs, [b["My Rating"] for b in grp],
+    ax.scatter(xs, [b[myratingcolumn] for b in grp],
                color=GENRE_COLOR[genre], marker="o", s=55, alpha=0.85, linewidths=0)
     ax.scatter(xs, [b["Avg Rating"] for b in grp],
                color=GENRE_COLOR[genre], marker="^", s=55, alpha=0.5, linewidths=0)

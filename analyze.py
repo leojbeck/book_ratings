@@ -6,16 +6,20 @@
 import csv
 from collections import defaultdict
 
+myratingcolumn = "FTR" #"My Rating"
+
+
+
 with open(r"input_tables/Reading_data_table.csv", newline="", encoding="utf-8-sig") as f:
     reader = csv.DictReader(f)
     books = [row for row in reader if row["Title"].strip()]
 
 for b in books:
-    b["My Rating"] = int(b["My Rating"])
+    b["My Rating"] = int(b[myratingcolumn])
     b["Avg Rating"] = float(b["Avg Rating"]) if b["Avg Rating"] else None
     b["Pages"] = int(b["Pages"]) if b["Pages"] else None
     b["School?"] = int(b["School?"])
-    b["diff"] = b["My Rating"] - b["Avg Rating"] if b["Avg Rating"] else None
+    b["diff"] = b[myratingcolumn] - b["Avg Rating"] if b["Avg Rating"] else None
 
 total = len(books)
 school = [b for b in books if b["School?"]]
@@ -38,7 +42,7 @@ def p(*args, **kwargs):
 p("=" * 60)
 p(f"OVERVIEW  ({total} books)")
 p("=" * 60)
-p(f"  Avg my rating:        {fmt(avg([b['My Rating'] for b in books]))}")
+p(f"  Avg my rating:        {fmt(avg([b[myratingcolumn] for b in books]))}")
 p(f"  Avg GR rating:        {fmt(avg([b['Avg Rating'] for b in books]))}")
 p(f"  Avg differential:     {fmt(avg([b['diff'] for b in books]))}")
 p(f"  Total pages read:     {sum(b['Pages'] for b in books if b['Pages']):,}")
@@ -47,7 +51,7 @@ p()
 p("SCHOOL vs NON-SCHOOL")
 p("-" * 60)
 for label, grp in [("School", school), ("Non-school", non_school)]:
-    my_avg = avg([b["My Rating"] for b in grp])
+    my_avg = avg([b[myratingcolumn] for b in grp])
     gr_avg = avg([b["Avg Rating"] for b in grp])
     diff_avg = avg([b["diff"] for b in grp])
     p(f"  {label} ({len(grp)} books):")
@@ -64,7 +68,7 @@ for b in books:
 
 rows = []
 for genre, grp in sorted(genres.items()):
-    rows.append((genre, len(grp), avg([b["My Rating"] for b in grp]),
+    rows.append((genre, len(grp), avg([b[myratingcolumn] for b in grp]),
                  avg([b["Avg Rating"] for b in grp]),
                  avg([b["diff"] for b in grp])))
 rows.sort(key=lambda r: r[2], reverse=True)
@@ -102,29 +106,29 @@ for b in books:
     by_year[b["Year Read"]].append(b)
 for year in sorted(by_year):
     grp = by_year[year]
-    p(f"  {year}: {len(grp):>3} books  |  avg my rating: {fmt(avg([b['My Rating'] for b in grp]))}")
+    p(f"  {year}: {len(grp):>3} books  |  avg my rating: {fmt(avg([b[myratingcolumn] for b in grp]))}")
 p()
 
 p("RATING DISTRIBUTION (my ratings)")
 p("-" * 60)
 for r in range(1, 6):
-    n = sum(1 for b in books if b["My Rating"] == r)
+    n = sum(1 for b in books if b[myratingcolumn] == r)
     bar = "#" * n
     p(f"  {r}/5: {bar:<30} ({n})")
 p()
 
 p("TOP 5 RATED (my rating, then GR avg as tiebreak)")
 p("-" * 60)
-top = sorted(books, key=lambda b: (b["My Rating"], b["Avg Rating"] or 0), reverse=True)[:5]
+top = sorted(books, key=lambda b: (b[myratingcolumn], b["Avg Rating"] or 0), reverse=True)[:5]
 for b in top:
-    p(f"  {b['My Rating']}/5  GR:{b['Avg Rating']}  {b['Title']} — {b['Author']}")
+    p(f"  {b[myratingcolumn]}/5  GR:{b['Avg Rating']}  {b['Title']} — {b['Author']}")
 p()
 
 p("BOTTOM 5 RATED")
 p("-" * 60)
-bot = sorted(books, key=lambda b: (b["My Rating"], b["Avg Rating"] or 0))[:5]
+bot = sorted(books, key=lambda b: (b[myratingcolumn], b["Avg Rating"] or 0))[:5]
 for b in bot:
-    p(f"  {b['My Rating']}/5  GR:{b['Avg Rating']}  {b['Title']} — {b['Author']}")
+    p(f"  {b[myratingcolumn]}/5  GR:{b['Avg Rating']}  {b['Title']} — {b['Author']}")
 p()
 
 all_diff = sorted([b for b in books if b["diff"] is not None], key=lambda b: b["diff"], reverse=True)
@@ -132,13 +136,13 @@ all_diff = sorted([b for b in books if b["diff"] is not None], key=lambda b: b["
 p("BIGGEST POSITIVE DIFFERENTIALS (I rated higher than GR)")
 p("-" * 60)
 for b in all_diff[:5]:
-    p(f"  {b['diff']:+.2f}  My:{b['My Rating']}  GR:{b['Avg Rating']}  {b['Title']}")
+    p(f"  {b['diff']:+.2f}  My:{b[myratingcolumn]}  GR:{b['Avg Rating']}  {b['Title']}")
 p()
 
 p("BIGGEST NEGATIVE DIFFERENTIALS (I rated lower than GR)")
 p("-" * 60)
 for b in all_diff[-5:]:
-    p(f"  {b['diff']:+.2f}  My:{b['My Rating']}  GR:{b['Avg Rating']}  {b['Title']}")
+    p(f"  {b['diff']:+.2f}  My:{b[myratingcolumn]}  GR:{b['Avg Rating']}  {b['Title']}")
 p()
 
 p("AUTHORS WITH MULTIPLE BOOKS")
@@ -148,9 +152,9 @@ for b in books:
     if b["Author"].strip():
         authors[b["Author"]].append(b)
 multi = {a: grp for a, grp in authors.items() if len(grp) >= 2}
-for author, grp in sorted(multi.items(), key=lambda x: avg([b["My Rating"] for b in x[1]]), reverse=True):
+for author, grp in sorted(multi.items(), key=lambda x: avg([b[myratingcolumn] for b in x[1]]), reverse=True):
     titles = ", ".join(b["Title"] for b in grp)
-    p(f"  {author} (n={len(grp)}, avg={fmt(avg([b['My Rating'] for b in grp]))}): {titles}")
+    p(f"  {author} (n={len(grp)}, avg={fmt(avg([b[myratingcolumn] for b in grp]))}): {titles}")
 
 output_file.close()
 print("\nOutput saved to analysis_output.txt")

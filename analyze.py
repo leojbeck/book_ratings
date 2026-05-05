@@ -15,7 +15,7 @@ with open(r"input_tables/Reading_data_table.csv", newline="", encoding="utf-8-si
     books = [row for row in reader if row["Title"].strip()]
 
 for b in books:
-    b["My Rating"] = int(b[myratingcolumn])
+    b[myratingcolumn] = float(b[myratingcolumn])
     b["Avg Rating"] = float(b["Avg Rating"]) if b["Avg Rating"] else None
     b["Pages"] = int(b["Pages"]) if b["Pages"] else None
     b["School?"] = int(b["School?"])
@@ -111,10 +111,10 @@ p()
 
 p("RATING DISTRIBUTION (my ratings)")
 p("-" * 60)
-for r in range(1, 6):
+for r in [1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5]:
     n = sum(1 for b in books if b[myratingcolumn] == r)
     bar = "#" * n
-    p(f"  {r}/5: {bar:<30} ({n})")
+    p(f"  {r:>3}/5: {bar:<30} ({n})")
 p()
 
 p("TOP 5 RATED (my rating, then GR avg as tiebreak)")

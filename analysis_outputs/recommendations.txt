@@ -2,74 +2,74 @@ RECOMMENDATIONS — want-to-read list scored 2026-05-04
 Model: Ridge regression on differential (my rating - GR avg)
 ========================================================================
 
- 1. 4.5  (GR 3.87, diff +0.61)  Murder on the Links
-    Agatha Christie | Mystery / Murder | Hercule Poirot #2 | pub 1923 | 240p
-    Author history: 4 book(s) read, avg 4.62
-    Similar reads:  Murder on the Orient Express [5.0/5, 0.16],  The da Vinci Code [4.0/5, 0.03],  Crime and Punishment [4.0/5, 0.01]
-
- 2. 4.4  (GR 4.66, diff -0.22)  The Way of Kings
+ 1. 4.5  (GR 4.66, diff -0.17)  The Way of Kings
     Brandon Sanderson | Fantasy / High-Fantasy | The Stormlight Archive #1 | pub 2010 | 1007p
     Author history: not yet read
     Similar reads:  The Song of Achilles [4.0/5, 0.09],  The Two Towers [5.0/5, 0.06],  Fellowship of the Ring [4.5/5, 0.05]
 
- 3. 4.3  (GR 4.37, diff -0.04)  Behave: The Biology of Humans at Our Best and Worst
+ 2. 4.5  (GR 3.87, diff +0.61)  Murder on the Links
+    Agatha Christie | Mystery / Murder | Hercule Poirot #2 | pub 1923 | 240p
+    Author history: 4 book(s) read, avg 4.62
+    Similar reads:  Murder on the Orient Express [5.0/5, 0.16],  The da Vinci Code [4.0/5, 0.03],  Crime and Punishment [4.0/5, 0.01]
+
+ 3. 4.4  (GR 4.37, diff -0.01)  Behave: The Biology of Humans at Our Best and Worst
     Robert M. Sapolsky | Nonfiction / Science | pub 2017 | 790p
     Author history: not yet read
     Similar reads:  Our Mathematical Universe [5.0/5, 0.04],  Freakonomics [5.0/5, 0.03],  Invisible Women [3.5/5, 0.03]
 
- 4. 4.3  (GR 4.29, diff -0.01)  Godel, Escher, Bach: An Eternal Golden Braid
+ 4. 4.3  (GR 4.29, diff +0.02)  Godel, Escher, Bach: An Eternal Golden Braid
     Douglas R. Hofstadter | Nonfiction / Science | pub 1979 | 777p
     Author history: not yet read
     Similar reads:  Freakonomics [5.0/5, 0.06],  Our Mathematical Universe [5.0/5, 0.06],  Invisible Women [3.5/5, 0.05]
 
- 5. 4.2  (GR 4.13, diff +0.08)  Welcome to the Monkey House
-    Kurt Vonnegut | Fiction / SciFi | pub 1968 | 331p
-    Author history: 3 book(s) read, avg 4.17
-    Similar reads:  Slaughterhouse Five [5.0/5, 0.31],  Breakfast of Champions [3.5/5, 0.23],  Cat's Cradle [4.0/5, 0.16]
-
- 6. 4.2  (GR 4.17, diff +0.02)  How To: Absurd Scientific Advice for Common Real-World Problems
+ 5. 4.2  (GR 4.17, diff +0.06)  How To: Absurd Scientific Advice for Common Real-World Problems
     Randall Munroe | Nonfiction / Science | How To #1 | pub 2019 | 308p
     Author history: not yet read
     Similar reads:  Humble Pi [4.0/5, 0.09],  How to Win Friends and Influence People [4.5/5, 0.08],  Freakonomics [5.0/5, 0.06]
 
- 7. 4.2  (GR 4.20, diff -0.03)  American Nations: A History of the Eleven Rival Regional Cultures of North America
-    Colin Woodard | Nonfiction / History | pub 2011 | 271p
-    Author history: not yet read
-    Similar reads:  Our Mathematical Universe [5.0/5, 0.07],  Mythos [4.0/5, 0.04],  Humble Pi [4.0/5, 0.03]
+ 6. 4.2  (GR 4.13, diff +0.10)  Welcome to the Monkey House
+    Kurt Vonnegut | Fiction / SciFi | pub 1968 | 331p
+    Author history: 3 book(s) read, avg 4.17
+    Similar reads:  Slaughterhouse Five [5.0/5, 0.31],  Breakfast of Champions [3.5/5, 0.23],  Cat's Cradle [4.0/5, 0.16]
 
- 8. 4.1  (GR 4.46, diff -0.33)  Dungeon Crawler
+ 7. 4.2  (GR 4.46, diff -0.30)  Dungeon Crawler
     Matt Dinniman | Fantasy / SciFi | Dungeon Crawler #1 | pub 2020 | 450p
     Author history: not yet read
 
- 9. 4.1  (GR 4.01, diff +0.11)  The Outer Limits of Reason
+ 8. 4.2  (GR 4.01, diff +0.14)  The Outer Limits of Reason
     Noson Yanofsky | Nonfiction / Science | pub 2013 | 403p
     Author history: not yet read
     Similar reads:  Math Without Numbers [5.0/5, 0.10],  The Ten Equations that Rule the World [3.5/5, 0.09],  Our Mathematical Universe [5.0/5, 0.09]
 
-10. 4.1  (GR 4.29, diff -0.22)  The Demon-Haunted World
+ 9. 4.1  (GR 4.20, diff -0.07)  American Nations: A History of the Eleven Rival Regional Cultures of North America
+    Colin Woodard | Nonfiction / History | pub 2011 | 271p
+    Author history: not yet read
+    Similar reads:  Our Mathematical Universe [5.0/5, 0.07],  Mythos [4.0/5, 0.04],  Humble Pi [4.0/5, 0.03]
+
+10. 4.1  (GR 4.29, diff -0.19)  The Demon-Haunted World
     Carl Sagan | Nonfiction / Science | pub 1995 | 459p
     Author history: not yet read
     Similar reads:  Our Mathematical Universe [5.0/5, 0.05],  Invisible Women [3.5/5, 0.04],  The Power Broker: Robert Moses & the Fall of New York [3.5/5, 0.04]
 
-11. 4.1  (GR 4.28, diff -0.22)  Howl's Moving Castle
+11. 4.1  (GR 4.28, diff -0.19)  Howl's Moving Castle
     Diana Wynne Jones | Fantasy / High-Fantasy | Howl's Moving Castle #1 | pub 1986 | 329p
     Author history: not yet read
 
-12. 3.9  (GR 4.16, diff -0.24)  The Priory of the Orange Tree
+12. 3.9  (GR 4.16, diff -0.21)  The Priory of the Orange Tree
     Samantha Shannon | Fantasy / High-Fantasy | Roots of Chaos #1 | pub 2019 | 848p
     Author history: not yet read
 
-13. 3.9  (GR 3.85, diff +0.07)  Behold a Pale Horse
+13. 3.9  (GR 3.85, diff +0.09)  Behold a Pale Horse
     Milton William Cooper | Nonfiction / Conspiracy | pub 1991 | 534p
     Author history: not yet read
     Similar reads:  Freakonomics [5.0/5, 0.05],  The Power Broker: Robert Moses & the Fall of New York [3.5/5, 0.04],  How to Win Friends and Influence People [4.5/5, 0.03]
 
-14. 3.9  (GR 4.33, diff -0.43)  Sapiens: A Brief History of Humankind
+14. 3.9  (GR 4.33, diff -0.39)  Sapiens: A Brief History of Humankind
     Yuval Noah Harari | Nonfiction / Science | pub 2011 | 512p
     Author history: not yet read
     Similar reads:  Once Upon a Prime [3.0/5, 0.08],  Mythos [4.0/5, 0.05],  How to Win Friends and Influence People [4.5/5, 0.04]
 
-15. 3.9  (GR 4.01, diff -0.12)  Me Talk Pretty One Day
+15. 3.9  (GR 4.01, diff -0.09)  Me Talk Pretty One Day
     David Sedaris | Nonfiction / Humor | pub 2000 | 272p
     Author history: not yet read
 
@@ -78,50 +78,50 @@ Model: Ridge regression on differential (my rating - GR avg)
     Author history: not yet read
     Similar reads:  Frankenstein [5.0/5, 0.02],  The Metamorphosis [3.0/5, 0.02],  The Odyssey [4.0/5, 0.02]
 
-17. 3.8  (GR 3.92, diff -0.07)  The Alchemist
+17. 3.9  (GR 3.92, diff -0.04)  The Alchemist
     Paulo Coelho | Classic / Fantasy | pub 1988 | 182p
     Author history: not yet read
 
-18. 3.8  (GR 3.92, diff -0.09)  Stranger in a Strange Land
+18. 3.9  (GR 3.92, diff -0.06)  Stranger in a Strange Land
     Robert A. Heinlein | SciFi / Space | pub 1961 | 525p
     Author history: not yet read
     Similar reads:  1984 [3.5/5, 0.07],  I, Robot [4.0/5, 0.05],  The Martian [5.0/5, 0.04]
 
-19. 3.8  (GR 4.39, diff -0.57)  The Brothers Karamazov
-    Fyodor Dostoyevsky | Classic / Literature | pub 1880 | 796p
-    Author history: 1 book(s) read, avg 4.00
-    Similar reads:  Crime and Punishment [4.0/5, 0.07],  The Catcher in the Rye [3.0/5, 0.04],  The Metamorphosis [3.0/5, 0.03]
-
-20. 3.8  (GR 4.30, diff -0.49)  Pride and Prejudice
+19. 3.8  (GR 4.30, diff -0.48)  Pride and Prejudice
     Jane Austen | Classic / Romance | pub 1813 | 279p
     Author history: not yet read
     Similar reads:  The Most Dangerous Game [2.5/5, 0.05],  Their Eyes Were Watching God [4.0/5, 0.05],  The Song of Achilles [4.0/5, 0.04]
 
-21. 3.8  (GR 3.96, diff -0.20)  The Black Swan
+20. 3.8  (GR 4.39, diff -0.58)  The Brothers Karamazov
+    Fyodor Dostoyevsky | Classic / Literature | pub 1880 | 796p
+    Author history: 1 book(s) read, avg 4.00
+    Similar reads:  Crime and Punishment [4.0/5, 0.07],  The Catcher in the Rye [3.0/5, 0.04],  The Metamorphosis [3.0/5, 0.03]
+
+21. 3.8  (GR 3.96, diff -0.19)  The Black Swan
     Nassim Nicholas Taleb | Nonfiction / Economics | pub 2007 | 480p
     Author history: not yet read
     Similar reads:  How to Win Friends and Influence People [4.5/5, 0.04],  The Ten Equations that Rule the World [3.5/5, 0.04],  Invisible Women [3.5/5, 0.03]
 
-22. 3.7  (GR 4.02, diff -0.29)  The Wishing Game
+22. 3.7  (GR 4.02, diff -0.27)  The Wishing Game
     Meg Shaffer | Fantasy / Romance | pub 2023 | 278p
     Author history: not yet read
     Similar reads:  On Earth We're Briefly Gorgeous [3.0/5, 0.09],  The Midnight Library [3.5/5, 0.05],  Hello Beautiful [5.0/5, 0.05]
 
-23. 3.7  (GR 3.72, diff -0.04)  Algospeak
+23. 3.7  (GR 3.72, diff -0.02)  Algospeak
     Adam Aleksic | Nonfiction / Linguistics | pub 2025 | 256p
     Author history: not yet read
     Similar reads:  The Ten Equations that Rule the World [3.5/5, 0.10],  Humble Pi [4.0/5, 0.07],  How to Win Friends and Influence People [4.5/5, 0.05]
 
-24. 3.6  (GR 3.97, diff -0.33)  The Signal and the Noise
+24. 3.7  (GR 3.97, diff -0.30)  The Signal and the Noise
     Nate Silver | Nonfiction / Science | pub 2012 | 544p
     Author history: not yet read
     Similar reads:  Humble Pi [4.0/5, 0.09],  Invisible Women [3.5/5, 0.07],  Moneyball [3.0/5, 0.06]
 
-25. 3.5  (GR 3.44, diff +0.05)  Butter
+25. 3.5  (GR 3.44, diff +0.08)  Butter
     Asako Yuzuki | Mystery / Murder | pub 2017 | 464p
     Author history: not yet read
 
-26. 3.2  (GR 4.45, diff -1.30)  East of Eden
+26. 3.1  (GR 4.45, diff -1.32)  East of Eden
     John Steinbeck | Classic / Literature | pub 1952 | 601p
     Author history: 1 book(s) read, avg 3.00
     Similar reads:  Of Mice and Men [3.0/5, 0.14],  The Great Gatsby [3.0/5, 0.08],  1984 [3.5/5, 0.05]

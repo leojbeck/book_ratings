@@ -56,14 +56,23 @@ def _avg(vals):
     vals = [v for v in vals if v is not None]
     return sum(vals) / len(vals) if vals else None
 
+def _wavg(weighted_pairs):
+    """Weighted average of (value, weight) pairs."""
+    total_w = sum(w for _, w in weighted_pairs)
+    return sum(v * w for v, w in weighted_pairs) / total_w if total_w else None
+
 # ---------- stats (precomputed from read history) ----------
+
+# Genre 1 is the primary tag; each subsequent position is half as influential.
+_GENRE_POSITION_WEIGHTS = {"Genre 1": 1.0, "Genre 2": 0.5, "Genre 3": 0.25}
 
 def build_stats(read_books):
     """
     Compute per-genre, per-author, and per-series average ratings from read history.
-    All three genre columns are folded in so Genre 2/3 tags get their own averages too.
+    Genre averages are position-weighted: Genre 1 (1.0) > Genre 2 (0.5) > Genre 3 (0.25),
+    so a tag that is the primary genre pulls the average more than one that is incidental.
     """
-    genre_ratings  = defaultdict(list)
+    genre_ratings  = defaultdict(list)   # (rating, weight) pairs
     author_ratings = defaultdict(list)
     series_ratings = defaultdict(list)
 
@@ -71,10 +80,10 @@ def build_stats(read_books):
         r = b["My Rating"]
         if r is None:
             continue
-        for gf in ("Genre 1", "Genre 2", "Genre 3"):
+        for gf, w in _GENRE_POSITION_WEIGHTS.items():
             g = b.get(gf, "").strip()
             if g:
-                genre_ratings[g].append(r)
+                genre_ratings[g].append((r, w))
         a = b["Author"].strip()
         if a:
             author_ratings[a].append(r)
@@ -83,7 +92,7 @@ def build_stats(read_books):
             series_ratings[s].append(r)
 
     return {
-        "genre_avgs":   {g: _avg(rs) for g, rs in genre_ratings.items()},
+        "genre_avgs":   {g: _wavg(pairs) for g, pairs in genre_ratings.items()},
         "author_stats": {a: {"avg": _avg(rs), "count": len(rs)} for a, rs in author_ratings.items()},
         "series_stats": {s: {"avg": _avg(rs), "count": len(rs)} for s, rs in series_ratings.items()},
         "global_avg":   _avg([b["My Rating"] for b in read_books if b["My Rating"] is not None]),
@@ -180,8 +189,9 @@ def desc_similarities(book, cache, tfidf_model, top_k=3):
 # Ordered list used by model.py to build the numpy matrix consistently
 FEATURE_NAMES = [
     "gr_avg",           # Goodreads avg rating — strong baseline
-    "genre1_avg",       # user's historical avg for Genre 1
-    "genre2_avg",       # user's historical avg for Genre 2 (falls back to genre1_avg)
+    "genre1_avg",       # position-weighted avg for Genre 1 tag
+    "genre2_avg",       # position-weighted avg for Genre 2 tag (falls back to genre1_avg)
+    "genre3_avg",       # position-weighted avg for Genre 3 tag (falls back to genre2_avg)
     "author_avg",       # user's avg for this author (falls back to global avg)
     "author_count",     # books by this author already read
     "series_avg",       # user's avg for this series (falls back to global avg)
@@ -204,11 +214,13 @@ def build_features(book, stats, cache, tfidf_model=None):
     aa = stats["author_stats"]
     sa = stats["series_stats"]
 
-    # Genres — chain fallback: genre2 → genre1 → global
+    # Genres — chain fallback: genre3 → genre2 → genre1 → global
     g1 = book.get("Genre 1", "").strip()
     g2 = book.get("Genre 2", "").strip()
+    g3 = book.get("Genre 3", "").strip()
     genre1_avg = ga.get(g1, g)
     genre2_avg = ga.get(g2, genre1_avg) if g2 else genre1_avg
+    genre3_avg = ga.get(g3, genre2_avg) if g3 else genre2_avg
 
     # Author
     author      = book.get("Author", "").strip()
@@ -248,6 +260,7 @@ def build_features(book, stats, cache, tfidf_model=None):
         "gr_avg":         gr_avg,
         "genre1_avg":     genre1_avg,
         "genre2_avg":     genre2_avg,
+        "genre3_avg":     genre3_avg,
         "author_avg":     author_avg,
         "author_count":   author_count,
         "series_avg":     series_avg,

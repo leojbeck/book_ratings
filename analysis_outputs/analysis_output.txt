@@ -1,126 +1,130 @@
 ============================================================
-OVERVIEW  (86 books)
+OVERVIEW  (87 books)
 ============================================================
-  Avg my rating:        4.023
-  Avg GR rating:        9.355
-  Avg differential:     -5.331
-  Total pages read:     30,005
+  Avg my rating:        3.948
+  Avg GR rating:        4.116
+  Avg differential:     -0.168
+  Total pages read:     30,181
 
 SCHOOL vs NON-SCHOOL
 ------------------------------------------------------------
-  School (17 books):
-    Avg my rating:    3.471
-    Avg GR rating:    3.945
-    Avg differential: -0.475
+  School (18 books):
+    Avg my rating:    3.472
+    Avg GR rating:    3.951
+    Avg differential: -0.478
   Non-school (69 books):
-    Avg my rating:    4.159
-    Avg GR rating:    10.687
-    Avg differential: -6.528
+    Avg my rating:    4.072
+    Avg GR rating:    4.159
+    Avg differential: -0.087
 
 BY GENRE
 ------------------------------------------------------------
   Genre          N   My Avg   GR Avg     Diff
-  Mystery        4    4.750    4.043   +0.707
-  Fantasy       20    4.450   26.892  -22.441
-  Nonfiction    13    4.231    4.133   +0.098
-  SciFi         14    4.214    4.130   +0.084
-  Classic        9    3.667    3.996   -0.329
-  Fiction       21    3.571    4.009   -0.438
+  Mystery        4    4.625    4.043   +0.582
+  Fantasy       21    4.333    4.353   -0.020
+  SciFi         15    4.233    4.121   +0.113
+  Nonfiction    13    4.077    4.133   -0.056
+  Fiction       21    3.548    4.009   -0.461
+  Classic        8    3.375    3.996   -0.621
   Play           5    3.200    3.760   -0.560
 
 SCHOOL BOOKS BY GENRE (differential)
 ------------------------------------------------------------
-  Classic       n=1  avg diff=-0.200
-  Fantasy       n=1  avg diff=+0.160
+  Classic       n=1  avg diff=-0.700
+  Fantasy       n=2  avg diff=+0.060
   Fiction       n=7  avg diff=-0.690
   Play          n=5  avg diff=-0.560
   SciFi         n=3  avg diff=-0.133
 
 NON-SCHOOL BOOKS BY GENRE (differential)
 ------------------------------------------------------------
-  Classic       n=8  avg diff=-0.345
-  Fantasy       n=19  avg diff=-23.631
-  Fiction       n=14  avg diff=-0.311
-  Mystery       n=4  avg diff=+0.707
-  Nonfiction    n=13  avg diff=+0.098
-  SciFi         n=11  avg diff=+0.144
+  Classic       n=7  avg diff=-0.610
+  Fantasy       n=19  avg diff=-0.028
+  Fiction       n=14  avg diff=-0.347
+  Mystery       n=4  avg diff=+0.582
+  Nonfiction    n=13  avg diff=-0.056
+  SciFi         n=12  avg diff=+0.174
 
 BOOKS PER YEAR READ
 ------------------------------------------------------------
-  2008:   1 books  |  avg my rating: 5.000
-  2009:   3 books  |  avg my rating: 4.333
-  2010:   4 books  |  avg my rating: 4.500
+  2008:   2 books  |  avg my rating: 4.250
+  2009:   3 books  |  avg my rating: 4.167
+  2010:   4 books  |  avg my rating: 4.375
   2011:   3 books  |  avg my rating: 3.333
   2012:   1 books  |  avg my rating: 4.000
   2013:   5 books  |  avg my rating: 4.200
-  2014:   4 books  |  avg my rating: 3.750
+  2014:   4 books  |  avg my rating: 3.875
   2015:   5 books  |  avg my rating: 3.800
-  2016:   7 books  |  avg my rating: 3.571
-  2017:   2 books  |  avg my rating: 4.000
+  2016:   7 books  |  avg my rating: 3.500
+  2017:   2 books  |  avg my rating: 3.750
   2019:   1 books  |  avg my rating: 5.000
-  2020:   2 books  |  avg my rating: 4.500
+  2020:   2 books  |  avg my rating: 4.250
   2022:   1 books  |  avg my rating: 5.000
-  2023:   9 books  |  avg my rating: 4.333
-  2024:  19 books  |  avg my rating: 3.842
-  2025:  14 books  |  avg my rating: 3.929
-  2026:   5 books  |  avg my rating: 4.400
+  2023:   9 books  |  avg my rating: 4.167
+  2024:  19 books  |  avg my rating: 3.789
+  2025:  14 books  |  avg my rating: 3.857
+  2026:   5 books  |  avg my rating: 4.300
 
 RATING DISTRIBUTION (my ratings)
 ------------------------------------------------------------
-  1/5: #                              (1)
-  2/5: ##                             (2)
-  3/5: ##################             (18)
-  4/5: ###################################### (38)
-  5/5: ###########################    (27)
+    1/5: #                              (1)
+  1.5/5:                                (0)
+    2/5: ##                             (2)
+  2.5/5: ###                            (3)
+    3/5: ##############                 (14)
+  3.5/5: #######                        (7)
+    4/5: ############################### (31)
+  4.5/5: #########                      (9)
+    5/5: ####################           (20)
 
 TOP 5 RATED (my rating, then GR avg as tiebreak)
 ------------------------------------------------------------
-  5/5  GR:455.0  The Last Olympian — Rick Riordan
-  5/5  GR:4.58  Return of the King — J.R.R. Tolkein
-  5/5  GR:4.58  Half-Blood Prince — J.K. Rowling
-  5/5  GR:4.51  Project Hail Mary — Andy Weir
-  5/5  GR:4.5  The Two Towers — J.R.R. Tolkein
+  5.0/5  GR:4.58  Return of the King — J.R.R. Tolkein
+  5.0/5  GR:4.58  Half-Blood Prince — J.K. Rowling
+  5.0/5  GR:4.51  Project Hail Mary — Andy Weir
+  5.0/5  GR:4.5  The Two Towers — J.R.R. Tolkein
+  5.0/5  GR:4.5  Order of the Phoenix — J.K. Rowling
 
 BOTTOM 5 RATED
 ------------------------------------------------------------
-  1/5  GR:3.9  Roll of Thunder, Hear My Cry — Mildred D. Taylor
-  2/5  GR:3.51  Pinball 1973 — Haruki Murakami
-  2/5  GR:3.83  Dr. Jekyll & Mr. Hyde — Robert Louis Stevenson
-  3/5  GR:3.57  Hear the Wind Sing — Haruki Murakami
-  3/5  GR:3.61  The Crucible — Arthur Miller
+  1.0/5  GR:3.9  Roll of Thunder, Hear My Cry — Mildred D. Taylor
+  2.0/5  GR:3.51  Pinball 1973 — Haruki Murakami
+  2.0/5  GR:3.83  Dr. Jekyll & Mr. Hyde — Robert Louis Stevenson
+  2.5/5  GR:3.57  Hear the Wind Sing — Haruki Murakami
+  2.5/5  GR:3.95  The Most Dangerous Game — Richard Connell
 
 BIGGEST POSITIVE DIFFERENTIALS (I rated higher than GR)
 ------------------------------------------------------------
-  +1.11  My:5  GR:3.89  Frankenstein
-  +1.01  My:5  GR:3.99  Brave New World
-  +0.99  My:5  GR:4.01  Freakonomics
-  +0.94  My:5  GR:4.06  The Maze Runner
-  +0.90  My:5  GR:4.1  Slaughterhouse Five
+  +1.11  My:5.0  GR:3.89  Frankenstein
+  +1.01  My:5.0  GR:3.99  Brave New World
+  +0.99  My:5.0  GR:4.01  Freakonomics
+  +0.94  My:5.0  GR:4.06  The Maze Runner
+  +0.90  My:5.0  GR:4.1  Slaughterhouse Five
 
 BIGGEST NEGATIVE DIFFERENTIALS (I rated lower than GR)
 ------------------------------------------------------------
-  -1.27  My:3  GR:4.27  Moneyball
-  -1.51  My:2  GR:3.51  Pinball 1973
-  -1.83  My:2  GR:3.83  Dr. Jekyll & Mr. Hyde
-  -2.90  My:1  GR:3.9  Roll of Thunder, Hear My Cry
-  -450.00  My:5  GR:455.0  The Last Olympian
+  -1.45  My:2.5  GR:3.95  The Most Dangerous Game
+  -1.51  My:2.0  GR:3.51  Pinball 1973
+  -1.70  My:2.5  GR:4.2  One Flew Over the Cuckoo's Nest
+  -1.83  My:2.0  GR:3.83  Dr. Jekyll & Mr. Hyde
+  -2.90  My:1.0  GR:3.9  Roll of Thunder, Hear My Cry
 
 AUTHORS WITH MULTIPLE BOOKS
 ------------------------------------------------------------
-  J.R.R. Tolkein (n=4, avg=5.000): The Hobbit, Fellowship of the Ring, The Two Towers, Return of the King
   Andy Weir (n=2, avg=5.000): The Martian, Project Hail Mary
-  Agatha Christie (n=4, avg=4.750): Death on the Nile, Hallowe'en Party, Murder on the Orient Express, And Then There were None
-  Rick Riordan (n=3, avg=4.667): The Lightning Thief, Sea Of Monsters, The Last Olympian
+  J.R.R. Tolkein (n=4, avg=4.875): The Hobbit, Fellowship of the Ring, The Two Towers, Return of the King
+  Agatha Christie (n=4, avg=4.625): Death on the Nile, Hallowe'en Party, Murder on the Orient Express, And Then There were None
   John Green (n=2, avg=4.500): Everything is Tuberculosis, The Fault in Our Stars
   Douglas Adams (n=2, avg=4.500): The Hitchhiker's Guide to the Galaxy, The Restaurant at the End of the Universe
   Steven D. Levitt  (n=2, avg=4.500): Freakonomics, SuperFreakonomics
-  J.K. Rowling (n=7, avg=4.429): Sorcerer's Stone, Chamber of Secrets, Prizoner of Azkaban, Goblet of Fire, Order of the Phoenix, Half-Blood Prince, Deathly Hallows
-  Frank Herbert (n=3, avg=4.000): Dune, Dune Messiah, Children of Dune
-  Kurt Vonnegut (n=3, avg=4.000): Slaughterhouse Five, Cat's Cradle, Breakfast of Champions
-  George Orwell (n=2, avg=4.000): Animal Farm, 1984
+  J.K. Rowling (n=7, avg=4.357): Sorcerer's Stone, Chamber of Secrets, Prizoner of Azkaban, Goblet of Fire, Order of the Phoenix, Half-Blood Prince, Deathly Hallows
+  Rick Riordan (n=3, avg=4.333): The Lightning Thief, Sea Of Monsters, The Last Olympian
+  Kurt Vonnegut (n=3, avg=4.167): Slaughterhouse Five, Cat's Cradle, Breakfast of Champions
   Neil Gaiman (n=2, avg=4.000): American Gods, Anansi Boys
   Madeline Miller (n=2, avg=4.000): The Song of Achilles, Circe
   James Dashner (n=3, avg=4.000): The Maze Runner, The Scorch Trials, The Death Cure
+  Frank Herbert (n=3, avg=3.833): Dune, Dune Messiah, Children of Dune
+  George Orwell (n=2, avg=3.750): Animal Farm, 1984
   Michael Lewis (n=2, avg=3.500): Moneyball, Flash Boys
   William Shakespeare (n=3, avg=3.333): Macbeth, Romeo and Juliet, Julius Caesar
-  Haruki Murakami (n=2, avg=2.500): Hear the Wind Sing, Pinball 1973
+  Haruki Murakami (n=2, avg=2.250): Hear the Wind Sing, Pinball 1973
